@@ -1,6 +1,6 @@
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const enter=$('[data-enter]');
-enter.addEventListener('click',()=>document.body.classList.remove('is-loading'));
+enter.addEventListener('click',async()=>{document.body.classList.remove('is-loading');await setSound(true)});
 setTimeout(()=>enter.focus(),1800);
 
 const reveals=$$('.reveal');
@@ -47,19 +47,27 @@ $('.memory-form').addEventListener('submit',e=>{
 });
 
 const soundtrack=$('#soundtrack');let fadeFrame;
-const fadeAudio=(target,duration=900)=>{cancelAnimationFrame(fadeFrame);const start=soundtrack.volume,at=performance.now();const tick=now=>{const t=Math.min(1,(now-at)/duration);soundtrack.volume=start+(target-start)*t;if(t<1)fadeFrame=requestAnimationFrame(tick);else if(target===0)soundtrack.pause()};fadeFrame=requestAnimationFrame(tick)};
-$('.sound').addEventListener('click',async e=>{
+const fadeAudio=(target,duration=900)=>{cancelAnimationFrame(fadeFrame);const start=soundtrack.volume,at=performance.now();const tick=now=>{const t=Math.max(0,Math.min(1,(now-at)/duration));soundtrack.volume=Math.max(0,Math.min(1,start+(target-start)*t));if(t<1)fadeFrame=requestAnimationFrame(tick);else if(target===0)soundtrack.pause()};fadeFrame=requestAnimationFrame(tick)};
+const soundButton=$('.sound');
+const setSound=async on=>{
+  if(on){soundtrack.volume=0;try{await soundtrack.play();fadeAudio(.42,1200)}catch(err){console.error('Soundtrack playback failed',err);return false}}
+  else fadeAudio(0,700);
+  soundButton.setAttribute('aria-pressed',on);$('b',soundButton).textContent=on?'ON':'OFF';
+  return true;
+};
+soundButton.addEventListener('click',async e=>{
   const button=e.currentTarget;
   const on=button.getAttribute('aria-pressed')!=='true';
-  if(on){soundtrack.volume=0;try{await soundtrack.play();fadeAudio(.42,1200)}catch(err){console.error('Soundtrack playback failed',err);return}}
-  else fadeAudio(0,700);
-  button.setAttribute('aria-pressed',on);$('b',button).textContent=on?'ON':'OFF';
+  await setSound(on);
 });
 
 if(matchMedia('(pointer:fine)').matches){
-  const c=$('.cursor');c.style.cssText='position:fixed;width:7px;height:7px;border:1px solid #fff;border-radius:50%;z-index:999;pointer-events:none;mix-blend-mode:difference;transition:width .2s,height .2s;';
-  addEventListener('pointermove',e=>{c.style.left=`${e.clientX-4}px`;c.style.top=`${e.clientY-4}px`});
-  $$('a,button,textarea,.memory-strip').forEach(el=>{el.addEventListener('mouseenter',()=>{c.style.width='28px';c.style.height='28px'});el.addEventListener('mouseleave',()=>{c.style.width='7px';c.style.height='7px'})});
+  document.body.classList.add('custom-cursor');
+  const c=$('.cursor');let tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty;
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;c.classList.add('visible')},{passive:true});
+  addEventListener('pointerleave',()=>c.classList.remove('visible'));
+  const follow=()=>{x+=(tx-x)*.18;y+=(ty-y)*.18;c.style.transform=`translate3d(${x}px,${y}px,0)`;requestAnimationFrame(follow)};follow();
+  $$('a,button,textarea,.memory-strip,.memory-strip article').forEach(el=>{el.addEventListener('mouseenter',()=>c.classList.add('active'));el.addEventListener('mouseleave',()=>c.classList.remove('active'))});
 }
 
 const motionImages=$$('.film-pair img,.memory-stage__back img,.portrait-silhouette img,.north-visual,.letter-portrait img');
