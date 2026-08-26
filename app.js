@@ -63,7 +63,9 @@ soundButton.addEventListener('click',async e=>{
 
 if(matchMedia('(pointer:fine)').matches){
   const c=$('.cursor');let tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty,started=false;
-  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;if(!started){x=tx;y=ty;started=true}document.body.classList.add('custom-cursor');c.classList.add('visible')},{passive:true});
+  const trackCursor=e=>{tx=e.clientX;ty=e.clientY;if(!started){x=tx;y=ty;started=true}document.body.classList.add('custom-cursor');c.classList.add('visible')};
+  addEventListener('pointermove',trackCursor,{passive:true});
+  addEventListener('mousemove',trackCursor,{passive:true});
   document.documentElement.addEventListener('mouseleave',()=>{c.classList.remove('visible');document.body.classList.remove('custom-cursor')});
   const follow=()=>{x+=(tx-x)*.18;y+=(ty-y)*.18;c.style.transform=`translate3d(${x}px,${y}px,0)`;requestAnimationFrame(follow)};follow();
   $$('a,button,textarea,.memory-strip,.memory-strip article').forEach(el=>{el.addEventListener('mouseenter',()=>c.classList.add('active'));el.addEventListener('mouseleave',()=>c.classList.remove('active'))});
