@@ -1,7 +1,12 @@
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const enter=$('[data-enter]');
 enter.addEventListener('click',async()=>{document.body.classList.remove('is-loading');await setSound(true)});
+const enterMuted=$('[data-enter-muted]');
+enterMuted.addEventListener('click',()=>{document.body.classList.remove('is-loading');setSound(false)});
 setTimeout(()=>enter.focus(),1800);
+
+const briefingMore=$('.briefing__more');
+if(matchMedia('(max-width:800px)').matches)briefingMore.removeAttribute('open');
 
 const reveals=$$('.reveal');
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.16});
@@ -36,6 +41,13 @@ const strip=$('.memory-strip');let down=false,startX=0,startScroll=0;
 strip.addEventListener('pointerdown',e=>{down=true;startX=e.clientX;startScroll=strip.scrollLeft;strip.setPointerCapture(e.pointerId)});
 strip.addEventListener('pointermove',e=>{if(down)strip.scrollLeft=startScroll-(e.clientX-startX)});
 strip.addEventListener('pointerup',()=>down=false);strip.addEventListener('pointercancel',()=>down=false);
+const memoryCards=$$('article',strip),memoryCurrent=$('[data-memory-current]');
+const memoryIndex=()=>Math.max(0,Math.min(memoryCards.length-1,Math.round(strip.scrollLeft/(memoryCards[0].offsetWidth+20))));
+const goMemory=delta=>{const index=Math.max(0,Math.min(memoryCards.length-1,memoryIndex()+delta));memoryCards[index].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'})};
+$('[data-memory-prev]').addEventListener('click',()=>goMemory(-1));
+$('[data-memory-next]').addEventListener('click',()=>goMemory(1));
+strip.addEventListener('scroll',()=>memoryCurrent.textContent=String(memoryIndex()+1).padStart(2,'0'),{passive:true});
+strip.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();goMemory(-1)}if(e.key==='ArrowRight'){e.preventDefault();goMemory(1)}});
 
 const textarea=$('#memory'),count=$('[data-count]');
 textarea.addEventListener('input',()=>count.textContent=textarea.value.length);
@@ -43,6 +55,8 @@ $('.memory-form').addEventListener('submit',e=>{
   e.preventDefault();const text=textarea.value.trim();if(!text){textarea.focus();return}
   $('[data-memory-text]').textContent=text;
   $('[data-memory-id]').textContent=String(Math.floor(Math.random()*999)).padStart(3,'0');
+  $('[data-submit-status]').textContent='这段记忆已经封存。';
+  const portrait=$('.letter-portrait');portrait.classList.add('is-revealed');portrait.setAttribute('aria-hidden','false');
   $('.memory-card').animate([{transform:'rotate(1deg) scale(.96)',opacity:.35},{transform:'rotate(1deg) scale(1)',opacity:1}],{duration:700,easing:'cubic-bezier(.16,1,.3,1)'});
 });
 
@@ -52,7 +66,7 @@ const soundButton=$('.sound');
 const setSound=async on=>{
   if(on){soundtrack.volume=0;try{await soundtrack.play();fadeAudio(.42,1200)}catch(err){console.error('Soundtrack playback failed',err);return false}}
   else fadeAudio(0,700);
-  soundButton.setAttribute('aria-pressed',on);$('b',soundButton).textContent=on?'ON':'OFF';
+  soundButton.setAttribute('aria-pressed',on);$('b',soundButton).textContent=on?'ON':'OFF';$('.state-label',soundButton).textContent=on?'音乐正在播放':'音乐已暂停';soundButton.title=on?'暂停 Time Flows Ever Onward':'播放 Time Flows Ever Onward';
   return true;
 };
 soundButton.addEventListener('click',async e=>{
