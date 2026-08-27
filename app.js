@@ -12,6 +12,16 @@ const reveals=$$('.reveal');
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.16});
 reveals.forEach(el=>io.observe(el));
 
+const storyVideos=$$('.story-video');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    const video=entry.target;
+    if(entry.isIntersecting){video.play().then(()=>video.classList.remove('is-paused')).catch(()=>video.classList.add('is-paused'))}
+    else{video.pause();video.classList.add('is-paused')}
+  }),{threshold:.18,rootMargin:'120px 0px'});
+  storyVideos.forEach(video=>videoObserver.observe(video));
+}
+
 const progress=$('.progress i');
 const chapters=$$('section[id]');
 const navLinks=$$('.index a');

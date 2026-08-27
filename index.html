@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=20260827-4">
+  <link rel="stylesheet" href="style.css?v=20260828-5">
 </head>
 <body class="is-loading">
   <div class="loader" aria-label="正在展开旅途记录">
@@ -45,8 +45,8 @@
   </nav>
 
   <main>
-    <section class="hero" id="prologue">
-      <img class="hero__image hero__image--official" src="assets/official/hero-landscape-hd.webp" width="1672" height="941" alt="月光下手持法杖的芙莉莲视觉">
+    <section class="hero" id="prologue" aria-label="芙莉莲与伙伴走过森林的动画开场">
+      <video class="hero__image hero__image--official story-video" poster="assets/official/hero-landscape-hd.webp" muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/video/forest-memory.webm" type="video/webm"></video>
       <div class="hero__veil"></div>
       <div class="hero__meta mono"><span>MEMORY / 001</span><span>TIME SCALE 1:1000</span></div>
       <div class="hero__copy reveal">
@@ -138,6 +138,10 @@
       <div class="chapter__content wide">
         <p class="eyebrow reveal">被留下的小事 / 拖动记忆带</p>
         <h2 class="display display--dark reveal">宏大的冒险会被记载，<br><em>小事却更像一个人。</em></h2>
+        <figure class="cinema-memory reveal">
+          <video class="story-video" poster="assets/stills/flower-field.webp" muted loop playsinline preload="none" aria-label="芙莉莲走入花田的动画片段"><source src="assets/video/flower-memory.webm" type="video/webm"></video>
+          <figcaption><span>ANIMATED MEMORY / 02</span><b>记忆不是静止的画面，它会在某个瞬间重新流动。</b></figcaption>
+        </figure>
         <div class="memory-strip memory-strip--images reveal" tabindex="0" aria-label="可横向拖动的记忆卡片">
           <article><img src="assets/stills/flower-field.webp" loading="lazy" decoding="async" width="800" height="450" alt="芙莉莲站在盛开的花田"><span>01</span><div><h3>花田</h3><p>一个曾被称赞过的魔法，很多年后依然开花。</p></div></article>
           <article><img src="assets/stills/ring-memory.webp" loading="lazy" decoding="async" width="800" height="450" alt="辛美尔为芙莉莲戴上戒指"><span>02</span><div><h3>戒指</h3><p>当时没有听懂的含义，后来在时间里慢慢显现。</p></div></article>
@@ -188,8 +192,8 @@
   <footer class="site-footer">
     <div><p>BEYOND JOURNEY'S END</p><h2>记忆让短暂的生命，<br>在另一个人的时间里继续前行。</h2></div>
     <div class="mono"><span>UNOFFICIAL FAN TRIBUTE</span><span>ORIGINAL VISUAL INTERPRETATION</span><span>2026 / END OF RECORD</span></div>
-    <p class="disclaimer">个人本地欣赏用非官方粉丝概念页。剧情画面与角色归原权利方所有；图片取自动画《葬送的芙莉莲》官方网站 STORY 与 SPECIAL GALLERY，界面为原创演绎；背景音乐使用访问者提供的 Time Flows Ever Onward。© 山田鐘人・アベツカサ／小学館／「葬送のフリーレン」製作委員会</p>
+    <p class="disclaimer">非官方粉丝概念页。剧情画面与角色归原权利方所有；图片取自动画《葬送的芙莉莲》官方网站 STORY 与 SPECIAL GALLERY，动画片段取自 TOHO animation 官方“旅の記憶”特别视频，界面为原创演绎；背景音乐使用访问者提供的 Time Flows Ever Onward。© 山田鐘人・アベツカサ／小学館／「葬送のフリーレン」製作委員会</p>
   </footer>
-  <script src="app.js?v=20260827-4"></script>
+  <script src="app.js?v=20260828-5"></script>
 </body>
 </html>
