@@ -7,6 +7,11 @@ const progress=$('.progress i');
 const dots=$('[data-dots]');
 let current=0,locked=false,fadeFrame=0,touchX=0;
 
+$$('.scene__copy h2').forEach(title=>{
+  const lines=title.innerHTML.split(/<br\s*\/?>/i);
+  title.innerHTML=lines.map(line=>`<span class="line"><i>${line}</i></span>`).join('');
+});
+
 $('[data-total]').textContent=String(scenes.length).padStart(2,'0');
 scenes.forEach((scene,index)=>{
   const dot=document.createElement('button');
@@ -21,6 +26,7 @@ const playScene=scene=>{
 const pauseScene=scene=>{const video=$('video',scene);if(video)video.pause()};
 const updateUI=()=>{
   currentLabel.textContent=String(current+1).padStart(2,'0');
+  $('[data-scene-name]').textContent=scenes[current].dataset.label;
   progress.style.width=`${(current+1)/scenes.length*100}%`;
   $$('button',dots).forEach((dot,i)=>dot.classList.toggle('is-active',i===current));
   $('[data-prev]').disabled=current===0;
@@ -68,6 +74,24 @@ $('.memory-form').addEventListener('submit',e=>{
   if(!text){input.focus();return}
   $('[data-memory-result]').textContent=`“${text}” 已被留在这一刻。`;
 });
+
+if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  const cursor=$('.magic-cursor'),trailWrap=$('.cursor-trails');
+  const points=Array.from({length:7},()=>({x:innerWidth/2,y:innerHeight/2,el:trailWrap.appendChild(document.createElement('i'))}));
+  let tx=innerWidth/2,ty=innerHeight/2,cx=tx,cy=ty,started=false;
+  addEventListener('pointermove',e=>{
+    tx=e.clientX;ty=e.clientY;
+    if(!started){cx=tx;cy=ty;points.forEach(p=>{p.x=tx;p.y=ty});started=true}
+    document.body.classList.add('pointer-live');cursor.classList.add('visible');
+  },{passive:true});
+  document.documentElement.addEventListener('mouseleave',()=>{cursor.classList.remove('visible');document.body.classList.remove('pointer-live');points.forEach(p=>p.el.style.opacity=0)});
+  $$('a,button,input').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('active'));el.addEventListener('mouseleave',()=>cursor.classList.remove('active'))});
+  const follow=()=>{
+    cx+=(tx-cx)*.24;cy+=(ty-cy)*.24;cursor.style.transform=`translate3d(${cx}px,${cy}px,0)`;
+    let lead={x:cx,y:cy};points.forEach((p,i)=>{p.x+=(lead.x-p.x)*(.28-i*.018);p.y+=(lead.y-p.y)*(.28-i*.018);p.el.style.transform=`translate3d(${p.x}px,${p.y}px,0)`;p.el.style.opacity=started?String(.55-i*.065):0;lead=p});
+    requestAnimationFrame(follow);
+  };follow();
+}
 
 updateUI();
 setTimeout(()=>$('[data-enter]').focus(),700);

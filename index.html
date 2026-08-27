@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=20260828-7">
+  <link rel="stylesheet" href="style.css?v=20260828-8">
 </head>
 <body class="is-loading">
   <div class="loader" aria-label="进入互动记忆">
@@ -29,7 +29,7 @@
     <a class="brand" href="#" data-restart><span>BEYOND</span><b>旅途之后</b></a>
     <div class="progress" aria-hidden="true"><i></i></div>
     <button class="sound" type="button" aria-pressed="false"><span>TIME FLOWS</span><b>OFF</b><i><em></em><em></em><em></em></i></button>
-    <span class="counter"><b data-current>01</b> / <span data-total>08</span></span>
+    <span class="scene-name" data-scene-name>旅途之后</span><span class="counter"><b data-current>01</b> / <span data-total>08</span></span>
   </header>
 
   <main class="story" aria-live="polite">
@@ -39,7 +39,7 @@
       <div class="scene__copy scene__copy--hero">
         <span class="scene__eyebrow">BEYOND JOURNEY'S END</span>
         <h2>旅途<br><em>之后</em></h2>
-        <p>勇者打败魔王以后，故事才真正开始。</p>
+        <p>勇者一行结束了十年冒险。对别人来说这是结局，对芙莉莲来说，理解人类的旅途才刚刚开始。</p>
       </div>
     </section>
 
@@ -48,8 +48,8 @@
       <div class="scene__shade scene__shade--bottom"></div>
       <div class="scene__copy scene__copy--bottom">
         <span class="scene__eyebrow">01 / THE ELF MAGE</span>
-        <h2>她叫芙莉莲，<br>是一位活了千年的精灵。</h2>
-        <p>人类的一生，对她而言短得像一个季节。</p>
+        <h2>白发的精灵是芙莉莲，<br>紫发少女是她的弟子菲伦。</h2>
+        <p>芙莉莲能活过千年。菲伦和其他人类的一生，对她而言短得像一个季节。</p>
       </div>
     </section>
 
@@ -59,8 +59,8 @@
       <div class="scene__copy scene__copy--right">
         <span class="scene__eyebrow">02 / TEN YEARS</span>
         <strong class="scene__number">10</strong>
-        <h2>他们同行十年，<br>然后在王都告别。</h2>
-        <p>有人把它当作一生最重要的旅途，她却以为下一次见面不会太晚。</p>
+        <h2>在遇见菲伦以前，<br>她曾与勇者辛美尔同行十年。</h2>
+        <p>他们打败魔王后在王都告别。辛美尔把十年当作一生最重要的旅途，她却觉得十年很短。</p>
       </div>
     </section>
 
@@ -70,18 +70,18 @@
       <div class="scene__copy">
         <span class="scene__eyebrow">03 / FIFTY YEARS LATER</span>
         <strong class="scene__number">50</strong>
-        <h2>她如约回来，<br>时间却没有停下。</h2>
-        <p>同伴已经老去，而她几乎没有改变。</p>
+        <h2>五十年后她如约回来，<br>辛美尔却已经老去。</h2>
+        <p>她几乎没有改变；对辛美尔而言，这却是完整的一生。那次重逢也成为最后一次同行。</p>
       </div>
     </section>
 
     <section class="scene" data-scene data-label="迟来的理解">
-      <video class="scene__media" muted loop playsinline preload="none" poster="assets/stills/frieren-tears.webp"><source src="assets/video/magic-memory-hd.mp4" type="video/mp4"></video>
+      <img class="scene__media scene__media--still" src="assets/stills/frieren-tears.webp" width="800" height="450" alt="辛美尔葬礼上流泪的芙莉莲">
       <div class="scene__shade scene__shade--bottom"></div>
       <div class="scene__copy scene__copy--bottom scene__copy--center">
         <span class="scene__eyebrow">04 / A QUESTION TOO LATE</span>
-        <h2>直到葬礼，她才发现：<br><em>自己从未真正了解他。</em></h2>
-        <p>有些离别不是故事的结尾，而是理解终于开始的地方。</p>
+        <h2>辛美尔去世以后，<br><em>她第一次为自己的迟钝流泪。</em></h2>
+        <p>她明明知道人类生命短暂，却从未问过他喜欢什么、害怕什么。这个迟来的遗憾成为新旅途的起点。</p>
       </div>
     </section>
 
@@ -90,8 +90,8 @@
       <div class="scene__shade scene__shade--right"></div>
       <div class="scene__copy scene__copy--right">
         <span class="scene__eyebrow">05 / A NEW JOURNEY</span>
-        <h2>她带着新的同伴，<br>重新走上旧日道路。</h2>
-        <p>这一次，她开始认真记住生日、争吵、黄昏和每一次停留。</p>
+        <h2>为了理解已经离开的人，<br>她与菲伦、修塔尔克再次出发。</h2>
+        <p>新的同伴让她学会认真看待生日、争吵、黄昏和每一次看似平常的停留。</p>
       </div>
     </section>
 
@@ -101,7 +101,7 @@
       <div class="scene__copy">
         <span class="scene__eyebrow">06 / MINOR MEMORIES</span>
         <h2>宏大的冒险会被记载，<br><em>小事却更像一个人。</em></h2>
-        <p>一个花环、一枚戒指、一句随口的称赞，都可能在很多年后重新开花。</p>
+        <p>辛美尔留下的一个花环、一枚戒指、一句随口的称赞，都在她漫长的时间里重新开花。</p>
       </div>
     </section>
 
@@ -128,7 +128,9 @@
   </nav>
   <button class="stage-click" type="button" data-stage-next aria-label="点击进入下一幕"></button>
   <audio id="soundtrack" src="assets/audio/time-flows-ever-onward.m4a" preload="metadata" loop></audio>
+  <div class="magic-cursor" aria-hidden="true"><i></i><b></b></div>
+  <div class="cursor-trails" aria-hidden="true"></div>
   <p class="credit">UNOFFICIAL FAN TRIBUTE · FOOTAGE FROM TOHO ANIMATION OFFICIAL “旅の記憶” VIDEO</p>
-  <script src="app.js?v=20260828-7"></script>
+  <script src="app.js?v=20260828-8"></script>
 </body>
 </html>
