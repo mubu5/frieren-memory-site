@@ -29,3 +29,57 @@ body.is-loading .scene.is-active:after,body.is-loading .scene.is-active .scene__
 .scene-nav__next{opacity:.35;pointer-events:none;transform:translateX(8px);transition:opacity .45s,transform .45s}.stage-click{cursor:auto}body.can-advance .scene-nav__next{opacity:1;pointer-events:auto;transform:none}body.can-advance .stage-click{cursor:pointer}.scene--archive:after{background:#060b0e}.scene--wide-film:after{background:#6e1531}.scene--time-map:after{background:#c5bfb1}
 .scene--time-map .scene__copy h2,.scene--archive .scene__copy h2,.scene--triptych .scene__copy h2,.scene--mosaic .scene__copy h2{font-size:clamp(40px,4.35vw,66px)}.scene--triptych .scene__copy h2{max-width:1020px}.scene--archive .scene__copy h2{font-size:clamp(38px,3.9vw,60px)}.scene.is-active .scene__insert{animation:insertArrive 1.15s .55s cubic-bezier(.16,1,.3,1) both}.scene.is-active .scene__insert:nth-of-type(2){animation-delay:.72s}.scene.is-active .scene__insert:nth-of-type(3){animation-delay:.88s}.portal-window{animation:portalGlow 4s ease-in-out infinite alternate}@keyframes insertArrive{from{opacity:0;transform:translateY(26px) scale(.975)}to{opacity:1;transform:none}}@keyframes portalGlow{to{box-shadow:0 0 0 12px #122c3baa,0 25px 100px #7cbbe833}}
 @media(max-width:700px){.scene--split .scene__media,.scene--letterbox .scene__media{top:64px;left:0;width:100vw;height:43vh;object-fit:contain;background:#071016}.scene--split .scene__shade,.scene--letterbox .scene__shade{inset:0;background:linear-gradient(0deg,#071016 0 46%,rgba(7,16,22,.45) 64%,transparent 78%)}.scene--split .scene__copy,.scene--letterbox .scene__copy{bottom:13vh}.scene--split .scene__copy h2,.scene--letterbox .scene__copy h2,.scene--time-map .scene__copy h2,.scene--archive .scene__copy h2,.scene--triptych .scene__copy h2,.scene--mosaic .scene__copy h2{font-size:8.1vw}}
+
+/* Portrait direction: preserve the editorial compositions instead of flattening every scene. */
+@media(max-width:700px){
+  .topbar{height:62px;background:linear-gradient(#071016e8,#071016a8 72%,transparent)}
+  .scene-nav{bottom:20px}.stage-click{bottom:68px}
+  .scene__copy,.scene__copy--bottom,.scene__copy--right,.scene__copy--center{left:22px;right:22px;bottom:13.2vh;width:auto;text-align:left;transform:none}
+  .scene__copy h2,.scene--split .scene__copy h2,.scene--letterbox .scene__copy h2,.scene--time-map .scene__copy h2,.scene--archive .scene__copy h2,.scene--triptych .scene__copy h2,.scene--mosaic .scene__copy h2{font-size:7.4vw;line-height:1.16;letter-spacing:-.045em}
+  .scene__copy p{font-size:11.5px;line-height:1.65;margin-top:13px;max-width:100%}
+  .scene__eyebrow{font-size:7px;margin-bottom:11px}.scene__number{font-size:15vw;line-height:.72;margin-bottom:15px}
+
+  .scene--split .scene__media,.scene--letterbox .scene__media,.scene--cinema .scene__media,.scene--wide-film .scene__media{top:72px;left:0;width:100vw;height:38vh;object-fit:cover;background:#071016}
+  .scene--split .scene__media{object-position:center 38%}.scene--letterbox .scene__media{object-position:center 42%}
+  .scene--split .scene__shade,.scene--letterbox .scene__shade,.scene--cinema .scene__shade,.scene--wide-film .scene__shade{inset:0;background:linear-gradient(0deg,#071016 0 47%,#071016e8 51%,transparent 66%)}
+  .scene--split .scene__copy,.scene--letterbox .scene__copy,.scene--cinema .scene__copy,.scene--wide-film .scene__copy{bottom:13.2vh}
+
+  .scene--time-map .scene__media{inset:0 0 auto 0;width:68vw;height:56vh;object-fit:cover;object-position:64% center;filter:saturate(.72)}
+  .scene--time-map .scene__insert--portrait{display:block;left:auto;right:18px;top:112px;width:44vw;height:29vh;max-height:none;border:5px solid #e8e3d7;box-shadow:0 18px 40px #0007}
+  .scene--time-map .time-axis{display:grid;left:22px;top:78px;width:52vw;color:#17242a;gap:5px;font-size:6px}.scene--time-map .time-axis b{font-size:13px}
+  .scene--time-map .scene__shade{background:linear-gradient(0deg,#071016 0 45%,#071016e8 52%,transparent 75%)}
+
+  .scene--duo .scene__media{inset:0 auto 0 0;width:73vw;height:100%;object-fit:cover;object-position:center}
+  .scene--duo .scene__insert--aged{display:block;right:14px;top:92px;width:45vw;height:34vh;border:5px solid #101f2c;box-shadow:0 20px 50px #0009}
+  .scene--duo .scene__shade{background:linear-gradient(0deg,#08121c 0 43%,#08121ce8 52%,transparent 72%)}
+  .scene--duo .scene__copy{left:22px;right:22px;bottom:13.2vh;width:auto}
+
+  .scene--archive .scene__media{left:0;top:62px;width:66vw;height:51vh;object-fit:cover;object-position:47% center;filter:grayscale(.25)}
+  .scene--archive .scene__insert--grave{display:block;right:14px;top:112px;width:44vw;height:29vh;box-shadow:0 18px 45px #0008}
+  .scene--archive .scene__shade{background:linear-gradient(0deg,#071016 0 44%,#071016e8 51%,transparent 72%)}
+  .scene--archive .scene__copy{bottom:13.2vh}
+
+  .scene--cinema .cinema-bars{display:block;inset:62px 0 auto;height:40vh;border-top:10px solid #020609;border-bottom:10px solid #020609;box-shadow:none}
+  .scene--cinema .scene__media{height:39vh;object-position:center}
+
+  .scene--triptych .scene__media,.scene--triptych .scene__insert{display:block;top:76px;height:39vh;border:1px solid #ffffff44}
+  .scene--triptych .scene__media{left:34%;width:32%;object-fit:cover;object-position:center}
+  .scene--triptych .scene__insert--left{left:3%;width:29%}.scene--triptych .scene__insert--right{right:3%;left:auto;width:29%}
+  .scene--triptych .scene__shade{background:linear-gradient(0deg,#07110e 0 46%,#07110ee8 52%,transparent 70%)}
+  .scene--triptych .scene__copy{bottom:13.2vh}
+
+  .scene--mosaic .scene__media{left:37vw;top:66px;width:63vw;height:52vh;object-fit:cover;object-position:center}
+  .scene--mosaic .scene__insert--ring,.scene--mosaic .scene__insert--chest{display:block;left:14px;width:39vw;height:19vh;border:4px solid #d8d3c7}
+  .scene--mosaic .scene__insert--ring{top:92px}.scene--mosaic .scene__insert--chest{top:27vh;bottom:auto}
+  .scene--mosaic .scene__insert--statue{display:none}
+  .scene--mosaic .scene__shade{background:linear-gradient(0deg,#071016 0 43%,#071016ec 51%,transparent 72%)}
+  .scene--mosaic .scene__copy{bottom:13.2vh}
+
+  .scene--portal>.scene__media{inset:0;width:100%;height:100%;object-position:35% center;filter:brightness(.42) saturate(.75)}
+  .portal-window{right:16px;top:82px;width:49vw;height:39vh;border-radius:48% 48% 3px 3px/26% 26% 3px 3px;box-shadow:0 0 0 6px #091721bb,0 18px 50px #000}
+  .scene--portal .scene__shade{background:linear-gradient(0deg,#071016 0 42%,#071016d9 53%,transparent 73%)}
+  .scene--portal .scene__copy{bottom:13.2vh}
+
+  .scene--final .scene__media{object-position:58% center}.scene__copy--final{top:46%;bottom:auto;transform:translateY(-50%)}
+  .scene__copy--final h2{font-size:8.3vw}.memory-form{margin-top:20px}
+}
