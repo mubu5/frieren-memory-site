@@ -5,7 +5,7 @@ const soundButton=$('.sound');
 const currentLabel=$('[data-current]');
 const progress=$('.progress i');
 const dots=$('[data-dots]');
-let current=0,locked=false,fadeFrame=0,touchX=0;
+let current=0,locked=false,fadeFrame=0,touchX=0,stageReadyAt=Infinity,readyTimer=0;
 
 $$('.scene__copy h2').forEach(title=>{
   const lines=title.innerHTML.split(/<br\s*\/?>/i);
@@ -21,6 +21,7 @@ scenes.forEach((scene,index)=>{
 
 const playScene=scene=>{
   const video=$('video',scene);if(!video)return;
+  if(video.dataset.played){try{video.currentTime=0}catch{}}video.dataset.played='true';
   video.play().catch(()=>{});
 };
 const pauseScene=scene=>{const video=$('video',scene);if(video)video.pause()};
@@ -32,15 +33,20 @@ const updateUI=()=>{
   $('[data-prev]').disabled=current===0;
   document.body.classList.toggle('on-final',current===scenes.length-1);
 };
+const armAdvance=()=>{
+  clearTimeout(readyTimer);document.body.classList.remove('can-advance');
+  const delay=Number(scenes[current].dataset.dwell||2700);stageReadyAt=performance.now()+delay;
+  readyTimer=setTimeout(()=>document.body.classList.add('can-advance'),delay);
+};
 const go=(target)=>{
   if(locked||target===current||target<0||target>=scenes.length)return;
   locked=true;
   const old=scenes[current],next=scenes[target];
   old.classList.add('is-leaving');next.classList.add('is-active');
-  playScene(next);pauseScene(old);current=target;updateUI();
+  playScene(next);pauseScene(old);current=target;updateUI();armAdvance();
   setTimeout(()=>{old.classList.remove('is-active','is-leaving');locked=false},880);
 };
-const next=()=>go(current+1),prev=()=>go(current-1);
+const next=()=>{if(performance.now()>=stageReadyAt)go(current+1)},prev=()=>go(current-1);
 
 $('[data-next]').addEventListener('click',next);
 $('[data-stage-next]').addEventListener('click',next);
@@ -65,8 +71,8 @@ const setSound=async on=>{
   else fadeAudio(0,650);
   soundButton.setAttribute('aria-pressed',String(on));$('b',soundButton).textContent=on?'ON':'OFF';return true;
 };
-$('[data-enter]').addEventListener('click',async()=>{document.body.classList.remove('is-loading');playScene(scenes[0]);await setSound(true)});
-$('[data-enter-muted]').addEventListener('click',()=>{document.body.classList.remove('is-loading');playScene(scenes[0]);setSound(false)});
+$('[data-enter]').addEventListener('click',async()=>{document.body.classList.remove('is-loading');playScene(scenes[0]);armAdvance();await setSound(true)});
+$('[data-enter-muted]').addEventListener('click',()=>{document.body.classList.remove('is-loading');playScene(scenes[0]);armAdvance();setSound(false)});
 soundButton.addEventListener('click',()=>setSound(soundButton.getAttribute('aria-pressed')!=='true'));
 
 $('.memory-form').addEventListener('submit',e=>{

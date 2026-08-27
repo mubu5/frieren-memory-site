@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
-  <link rel="stylesheet" href="style.css?v=20260828-9">
+  <link rel="stylesheet" href="style.css?v=20260828-10">
 </head>
 <body class="is-loading">
   <div class="loader" aria-label="进入互动记忆">
@@ -33,8 +33,8 @@
   </header>
 
   <main class="story" aria-live="polite">
-    <section class="scene is-active" data-scene data-label="旅途之后">
-      <video class="scene__media" muted loop playsinline preload="metadata" poster="assets/official/hero-landscape-hd.webp"><source src="assets/video/forest-memory-hd.mp4" type="video/mp4"></video>
+    <section class="scene is-active" data-scene data-label="旅途之后" data-dwell="3200">
+      <video class="scene__media" muted playsinline preload="metadata" poster="assets/official/hero-landscape-hd.webp"><source src="assets/video/forest-memory-hd.mp4" type="video/mp4"></video>
       <div class="scene__shade scene__shade--left"></div>
       <div class="scene__copy scene__copy--hero">
         <span class="scene__eyebrow">BEYOND JOURNEY'S END</span>
@@ -43,8 +43,8 @@
       </div>
     </section>
 
-    <section class="scene" data-scene data-label="芙莉莲">
-      <video class="scene__media" muted loop playsinline preload="none" poster="assets/stills/frieren-fern.webp"><source src="assets/video/farewell-memory-hd.mp4" type="video/mp4"></video>
+    <section class="scene scene--split" data-scene data-label="芙莉莲与菲伦">
+      <video class="scene__media" muted playsinline preload="none" poster="assets/stills/frieren-fern.webp"><source src="assets/video/farewell-memory-hd.mp4" type="video/mp4"></video>
       <div class="scene__shade scene__shade--bottom"></div>
       <div class="scene__copy scene__copy--bottom">
         <span class="scene__eyebrow">01 / THE ELF MAGE</span>
@@ -53,8 +53,8 @@
       </div>
     </section>
 
-    <section class="scene" data-scene data-label="十年">
-      <video class="scene__media" muted loop playsinline preload="none" poster="assets/stills/homecoming.webp"><source src="assets/video/fire-memory-hd.mp4" type="video/mp4"></video>
+    <section class="scene scene--letterbox" data-scene data-label="勇者一行">
+      <video class="scene__media" muted playsinline preload="none" poster="assets/stills/homecoming.webp"><source src="assets/video/fire-memory-hd.mp4" type="video/mp4"></video>
       <div class="scene__shade scene__shade--right"></div>
       <div class="scene__copy scene__copy--right">
         <span class="scene__eyebrow">02 / TEN YEARS</span>
@@ -64,44 +64,94 @@
       </div>
     </section>
 
-    <section class="scene" data-scene data-label="五十年后">
-      <video class="scene__media" muted loop playsinline preload="none" poster="assets/stills/meteor-night.webp"><source src="assets/video/hands-memory-hd.mp4" type="video/mp4"></video>
+    <section class="scene scene--time-map" data-scene data-label="十年与千年">
+      <img class="scene__media scene__media--still" src="assets/stills/homecoming.webp" width="800" height="450" alt="勇者一行凯旋王都">
+      <figure class="scene__insert scene__insert--portrait"><img src="assets/stills/himmel-wave.webp" width="800" height="450" alt="年轻的辛美尔挥手"></figure>
+      <div class="time-axis" aria-hidden="true"><i></i><b>10</b><span>/</span><b>1000+</b></div>
       <div class="scene__shade scene__shade--left"></div>
       <div class="scene__copy">
-        <span class="scene__eyebrow">03 / FIFTY YEARS LATER</span>
+        <span class="scene__eyebrow">03 / DIFFERENT CLOCKS</span>
+        <h2>同样的十年，<br>在两个人心里有不同重量。</h2>
+        <p>对辛美尔，那几乎是一生中最重要的部分；对芙莉莲，却只是千年生命里很短的一页。</p>
+      </div>
+    </section>
+
+    <section class="scene scene--duo" data-scene data-label="五十年后">
+      <img class="scene__media scene__media--still" src="assets/stills/meteor-night.webp" width="800" height="450" alt="五十年一遇的流星雨">
+      <figure class="scene__insert scene__insert--aged"><img src="assets/stills/himmel-aged.webp" width="800" height="450" alt="年老的辛美尔仰望流星雨"><figcaption>辛美尔 / 五十年已经过去</figcaption></figure>
+      <div class="scene__shade scene__shade--bottom"></div>
+      <div class="scene__copy scene__copy--bottom">
+        <span class="scene__eyebrow">04 / FIFTY YEARS LATER</span>
         <strong class="scene__number">50</strong>
         <h2>五十年后她如约回来，<br>辛美尔却已经老去。</h2>
         <p>她几乎没有改变；对辛美尔而言，这却是完整的一生。那次重逢也成为最后一次同行。</p>
       </div>
     </section>
 
-    <section class="scene" data-scene data-label="迟来的理解">
+    <section class="scene scene--archive" data-scene data-label="辛美尔的葬礼" data-dwell="4200">
       <img class="scene__media scene__media--still" src="assets/stills/frieren-tears.webp" width="800" height="450" alt="辛美尔葬礼上流泪的芙莉莲">
-      <div class="scene__shade scene__shade--bottom"></div>
-      <div class="scene__copy scene__copy--bottom scene__copy--center">
-        <span class="scene__eyebrow">04 / A QUESTION TOO LATE</span>
+      <figure class="scene__insert scene__insert--grave"><img src="assets/stills/himmel-grave.webp" width="800" height="450" alt="开满蓝花的辛美尔墓碑"></figure>
+      <div class="scene__shade scene__shade--right"></div>
+      <div class="scene__copy scene__copy--right">
+        <span class="scene__eyebrow">05 / A QUESTION TOO LATE</span>
         <h2>辛美尔去世以后，<br><em>她第一次为自己的迟钝流泪。</em></h2>
         <p>她明明知道人类生命短暂，却从未问过他喜欢什么、害怕什么。这个迟来的遗憾成为新旅途的起点。</p>
       </div>
     </section>
 
-    <section class="scene" data-scene data-label="再次出发">
-      <video class="scene__media" muted loop playsinline preload="none" poster="assets/stills/new-party.webp"><source src="assets/video/companions-memory-hd.mp4" type="video/mp4"></video>
+    <section class="scene scene--cinema" data-scene data-label="未曾理解的心意">
+      <video class="scene__media" muted playsinline preload="none" poster="assets/stills/ring-memory.webp"><source src="assets/video/hands-memory-hd.mp4" type="video/mp4"></video>
+      <div class="cinema-bars" aria-hidden="true"></div>
+      <div class="scene__copy scene__copy--bottom">
+        <span class="scene__eyebrow">06 / A GESTURE REMEMBERED</span>
+        <h2>当时没能理解的动作，<br>后来都变成了答案。</h2>
+        <p>戒指、牵手、一次回头——记忆没有消失，只是她读懂得太晚。</p>
+      </div>
+    </section>
+
+    <section class="scene scene--triptych" data-scene data-label="新的三人">
+      <video class="scene__media" muted playsinline preload="none" poster="assets/stills/new-party.webp"><source src="assets/video/companions-memory-hd.mp4" type="video/mp4"></video>
+      <figure class="scene__insert scene__insert--left"><img src="assets/stills/frieren-fern.webp" width="800" height="450" alt="芙莉莲与菲伦"></figure>
+      <figure class="scene__insert scene__insert--right"><img src="assets/stills/new-party.webp" width="800" height="450" alt="新的三人同行"></figure>
       <div class="scene__shade scene__shade--right"></div>
       <div class="scene__copy scene__copy--right">
-        <span class="scene__eyebrow">05 / A NEW JOURNEY</span>
+        <span class="scene__eyebrow">07 / A NEW JOURNEY</span>
         <h2>为了理解已经离开的人，<br>她与菲伦、修塔尔克再次出发。</h2>
         <p>新的同伴让她学会认真看待生日、争吵、黄昏和每一次看似平常的停留。</p>
       </div>
     </section>
 
-    <section class="scene" data-scene data-label="记忆开花">
-      <video class="scene__media" muted loop playsinline preload="none" poster="assets/stills/flower-field.webp"><source src="assets/video/flower-memory-hd.mp4" type="video/mp4"></video>
+    <section class="scene scene--wide-film" data-scene data-label="旅途并不平静">
+      <video class="scene__media" muted playsinline preload="none" poster="assets/stills/northward-hd.webp"><source src="assets/video/magic-memory-hd.mp4" type="video/mp4"></video>
+      <div class="scene__shade scene__shade--bottom"></div>
+      <div class="scene__copy scene__copy--bottom">
+        <span class="scene__eyebrow">08 / THE ROAD NORTH</span>
+        <h2>理解人类的路上，<br>仍然有魔法、危险与选择。</h2>
+        <p>新的旅途不是重复过去。她开始在每一次并肩战斗里，看见同伴真正的样子。</p>
+      </div>
+    </section>
+
+    <section class="scene scene--mosaic" data-scene data-label="被留下的小事">
+      <video class="scene__media" muted playsinline preload="none" poster="assets/stills/flower-field.webp"><source src="assets/video/flower-memory-hd.mp4" type="video/mp4"></video>
+      <figure class="scene__insert scene__insert--ring"><img src="assets/stills/ring-memory.webp" width="800" height="450" alt="戒指的记忆"></figure>
+      <figure class="scene__insert scene__insert--statue"><img src="assets/stills/himmel-statue.webp" width="800" height="450" alt="辛美尔的铜像"></figure>
+      <figure class="scene__insert scene__insert--chest"><img src="assets/stills/treasure-chest.webp" width="800" height="450" alt="芙莉莲与宝箱"></figure>
       <div class="scene__shade scene__shade--left"></div>
       <div class="scene__copy">
-        <span class="scene__eyebrow">06 / MINOR MEMORIES</span>
+        <span class="scene__eyebrow">09 / MINOR MEMORIES</span>
         <h2>宏大的冒险会被记载，<br><em>小事却更像一个人。</em></h2>
         <p>辛美尔留下的一个花环、一枚戒指、一句随口的称赞，都在她漫长的时间里重新开花。</p>
+      </div>
+    </section>
+
+    <section class="scene scene--portal" data-scene data-label="向北方">
+      <img class="scene__media scene__media--still" src="assets/stills/northward-hd.webp" width="1672" height="941" alt="芙莉莲一行望向北方山谷">
+      <div class="portal-window"><video muted playsinline preload="none" poster="assets/stills/flower-field.webp"><source src="assets/video/flower-memory-hd.mp4" type="video/mp4"></video></div>
+      <div class="scene__shade scene__shade--left"></div>
+      <div class="scene__copy">
+        <span class="scene__eyebrow">10 / DESTINATION: AUREOLE</span>
+        <h2>他们继续向北，<br>前往传说中的魂眠之地。</h2>
+        <p>芙莉莲想在那里再见辛美尔一次，把迟到了很久的话真正说出口。</p>
       </div>
     </section>
 
@@ -109,7 +159,7 @@
       <img class="scene__media" src="assets/stills/blue-flower-memory-hd.webp" width="1672" height="941" alt="蓝色花海中的芙莉莲">
       <div class="scene__shade scene__shade--full"></div>
       <div class="scene__copy scene__copy--final">
-        <span class="scene__eyebrow">07 / YOUR MEMORY</span>
+        <span class="scene__eyebrow">11 / YOUR MEMORY</span>
         <h2>如果很多年后回头，<br>你希望记住什么？</h2>
         <form class="memory-form">
           <label for="memory">写下一件很小、但不想忘记的事</label>
@@ -131,6 +181,6 @@
   <div class="magic-cursor" aria-hidden="true"><i></i><b></b></div>
   <div class="cursor-trails" aria-hidden="true"></div>
   <p class="credit">UNOFFICIAL FAN TRIBUTE · FOOTAGE FROM TOHO ANIMATION OFFICIAL “旅の記憶” VIDEO</p>
-  <script src="app.js?v=20260828-9"></script>
+  <script src="app.js?v=20260828-10"></script>
 </body>
 </html>
