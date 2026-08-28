@@ -5,6 +5,7 @@ const soundButton=$('.sound');
 const currentLabel=$('[data-current]');
 const progress=$('.progress i');
 const dots=$('[data-dots]');
+const pageTurn=$('.page-turn');
 let current=0,locked=false,fadeFrame=0,touchX=0,stageReadyAt=Infinity,readyTimer=0;
 
 $$('.scene__copy h2').forEach(title=>{
@@ -20,7 +21,8 @@ scenes.forEach((scene,index)=>{
   const ornament=document.createElement('div');
   ornament.className='lore-ornament';ornament.setAttribute('aria-hidden','true');
   ornament.innerHTML='<i></i><b></b><em></em><span></span>';
-  scene.append(ornament);
+  const worldMap=document.createElement('div');worldMap.className='world-map';worldMap.setAttribute('aria-hidden','true');
+  scene.append(worldMap,ornament);
 });
 
 const playScene=scene=>{
@@ -48,10 +50,11 @@ const go=(target)=>{
   const old=scenes[current],next=scenes[target];
   const forward=target>current;
   document.body.classList.add('is-turning');
+  pageTurn.classList.remove('turn-forward','turn-back');void pageTurn.offsetWidth;pageTurn.classList.add(forward?'turn-forward':'turn-back');
   old.classList.add('is-leaving',forward?'turn-out-left':'turn-out-right');
   next.classList.add('is-active','is-entering',forward?'turn-in-right':'turn-in-left');
   playScene(next);pauseScene(old);current=target;updateUI();armAdvance();
-  setTimeout(()=>{old.classList.remove('is-active','is-leaving','turn-out-left','turn-out-right');next.classList.remove('is-entering','turn-in-right','turn-in-left');document.body.classList.remove('is-turning');locked=false},920);
+  setTimeout(()=>{old.classList.remove('is-active','is-leaving','turn-out-left','turn-out-right');next.classList.remove('is-entering','turn-in-right','turn-in-left');pageTurn.classList.remove('turn-forward','turn-back');document.body.classList.remove('is-turning');locked=false},1080);
 };
 const next=()=>{if(performance.now()>=stageReadyAt)go(current+1)},prev=()=>go(current-1);
 
@@ -96,12 +99,13 @@ if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:re
   addEventListener('pointermove',e=>{
     tx=e.clientX;ty=e.clientY;
     if(!started){cx=tx;cy=ty;points.forEach(p=>{p.x=tx;p.y=ty});started=true}
+    cursor.style.transform=`translate3d(${tx}px,${ty}px,0)`;
     cursor.classList.add('visible');
   },{passive:true});
   document.documentElement.addEventListener('mouseleave',()=>{cursor.classList.remove('visible');points.forEach(p=>p.el.style.opacity=0)});
   $$('a,button,input').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('active'));el.addEventListener('mouseleave',()=>cursor.classList.remove('active'))});
   const follow=()=>{
-    cx+=(tx-cx)*.42;cy+=(ty-cy)*.42;cursor.style.transform=`translate3d(${cx}px,${cy}px,0)`;
+    cx=tx;cy=ty;
     let lead={x:cx,y:cy};points.forEach((p,i)=>{p.x+=(lead.x-p.x)*(.28-i*.018);p.y+=(lead.y-p.y)*(.28-i*.018);p.el.style.transform=`translate3d(${p.x}px,${p.y}px,0)`;p.el.style.opacity=started?String(.55-i*.065):0;lead=p});
     requestAnimationFrame(follow);
   };follow();

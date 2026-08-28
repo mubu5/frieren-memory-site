@@ -246,6 +246,7 @@ body.is-turning .lore-ornament{opacity:.48;scale:1.14;transition:opacity .3s,sca
 
 /* Cursor center is exactly the operating point; no detached companion. */
 .magic-cursor{width:34px;height:34px;margin:-17px 0 0 -17px!important;transition:opacity .14s,scale .18s}.magic-cursor i{inset:0}.magic-cursor b{width:9px;height:9px;background:rgba(232,246,239,.9);border:0;box-shadow:0 0 0 4px rgba(143,201,223,.17),0 0 11px #8fc9df}.magic-cursor b:after{right:-7px;bottom:-7px}
+.magic-cursor.active{scale:1!important;filter:drop-shadow(0 0 8px #8fc9df) brightness(1.2)}
 .cursor-trails i{opacity:.25!important}
 
 @media(max-width:700px){
@@ -255,3 +256,29 @@ body.is-turning .lore-ornament{opacity:.48;scale:1.14;transition:opacity .3s,sca
   .scene--triptych .scene__media,.scene--triptych .scene__insert{clip-path:polygon(50% 0,100% 7%,100% 100%,0 100%,0 7%)}
 }
 @media(prefers-reduced-motion:reduce){.scene.is-entering,.scene.is-leaving{animation:none!important}.lore-ornament{transition:none!important}}
+
+/* V3: unmistakable world background, constructed frames, and a real page sheet. */
+.world-map{position:absolute;z-index:1;inset:64px 0 0;pointer-events:none;background:url("assets/ui/grimoire-map.svg") center/cover no-repeat;opacity:.23;mix-blend-mode:multiply;mask-image:linear-gradient(90deg,#000 0 38%,transparent 58%)}
+.scene--letterbox .world-map,.scene--duo .world-map,.scene--cinema .world-map,.scene--triptych .world-map,.scene--wide-film .world-map,.scene--portal .world-map,.scene:first-child .world-map,.scene--final .world-map{opacity:.28;mix-blend-mode:screen;mask-image:linear-gradient(90deg,transparent 0 40%,#000 62%)}
+.scene--time-map .world-map,.scene--mosaic .world-map{opacity:.38}.scene--archive .world-map{opacity:.3;mask-image:linear-gradient(90deg,transparent 0 38%,#000 60%)}
+
+.scene__insert{border:7px solid transparent!important;border-image:linear-gradient(135deg,#eee5c8 0 18%,#9b8656 20% 23%,#d8c996 25% 72%,#75633d 75% 79%,#efe5c8 82%) 1!important;outline:1px solid rgba(42,62,55,.8)!important;outline-offset:2px!important;box-shadow:0 0 0 7px rgba(20,31,28,.28),0 26px 60px rgba(11,20,17,.4)!important}
+.scene__insert:before{left:50%!important;top:0!important;transform:translateX(-50%);width:54px!important;height:15px!important;border:0!important;background:linear-gradient(90deg,transparent,#8d784b 18%,#e3d6a8 50%,#8d784b 82%,transparent);clip-path:polygon(0 0,100% 0,84% 100%,16% 100%)}
+.scene__insert:after{right:auto!important;left:50%!important;bottom:0!important;transform:translateX(-50%);width:74px!important;height:13px!important;border:0!important;background:linear-gradient(90deg,transparent,#6d5c3d 18%,#d2c28f 50%,#6d5c3d 82%,transparent);clip-path:polygon(15% 0,85% 0,100% 100%,0 100%)}
+.scene--triptych .scene__media,.scene--triptych .scene__insert{border:5px solid #a99057!important;outline:1px solid #dcd0aa;outline-offset:3px;box-shadow:0 0 0 8px rgba(8,19,17,.72),0 22px 55px #0007}
+.scene--letterbox .scene__media,.scene--cinema .scene__media,.scene--wide-film .scene__media{border:7px solid #9c8655;outline:2px solid #dfd1a5;outline-offset:3px;box-shadow:0 0 0 10px rgba(10,21,19,.72),0 28px 68px rgba(0,0,0,.46)}
+.portal-window{border-width:6px!important;border-color:#aa945d!important;outline:2px solid #d7c89a;outline-offset:4px}
+
+.page-turn{position:fixed;z-index:500;inset:0;pointer-events:none;visibility:hidden;perspective:1600px;overflow:hidden}.page-turn:before{content:"";position:absolute;inset:-4%;background:linear-gradient(90deg,#cfc4a4,#f1ead5 42%,#a99b76 49%,#f5eed9 56%,#c8bc9b);box-shadow:0 0 80px #0008;transform-origin:left center}.page-turn i{position:absolute;z-index:2;left:50%;top:50%;width:160px;height:160px;margin:-80px;border:1px solid #557d82;border-radius:50%;opacity:0}.page-turn i:before,.page-turn i:after{content:"";position:absolute;inset:18%;border:1px dashed #557d82;border-radius:50%}.page-turn i:after{inset:38%;border-style:solid;transform:rotate(45deg);border-radius:0}.page-turn b{position:absolute;z-index:3;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(transparent,#756b50 18%,#fff7db 50%,#756b50 82%,transparent);box-shadow:0 0 22px #fff2b8;opacity:0}.page-turn span{position:absolute;z-index:4;left:50%;top:calc(50% + 105px);transform:translateX(-50%);font:9px "Space Mono";letter-spacing:.32em;color:#405951;opacity:0}
+.page-turn.turn-forward,.page-turn.turn-back{visibility:visible}.page-turn.turn-forward:before{animation:sheetForward 1.06s cubic-bezier(.72,0,.2,1) both}.page-turn.turn-back:before{transform-origin:right center;animation:sheetBack 1.06s cubic-bezier(.72,0,.2,1) both}.page-turn.turn-forward i,.page-turn.turn-back i{animation:turnSigil 1.06s ease both}.page-turn.turn-forward b,.page-turn.turn-back b,.page-turn.turn-forward span,.page-turn.turn-back span{animation:turnMark 1.06s ease both}
+@keyframes sheetForward{0%{transform:translateX(105%) rotateY(-70deg)}42%{transform:translateX(0) rotateY(-5deg)}58%{transform:translateX(0) rotateY(5deg)}100%{transform:translateX(-105%) rotateY(70deg)}}
+@keyframes sheetBack{0%{transform:translateX(-105%) rotateY(70deg)}42%{transform:translateX(0) rotateY(5deg)}58%{transform:translateX(0) rotateY(-5deg)}100%{transform:translateX(105%) rotateY(-70deg)}}
+@keyframes turnSigil{0%,24%,78%,100%{opacity:0;transform:scale(.65) rotate(0)}42%,60%{opacity:.72;transform:scale(1) rotate(90deg)}}
+@keyframes turnMark{0%,30%,72%,100%{opacity:0}44%,60%{opacity:.75}}
+
+@media(max-width:700px){
+  .world-map{inset:62px 0 0;opacity:.22;mask-image:linear-gradient(0deg,#000 0 46%,transparent 68%)}
+  .scene--letterbox .world-map,.scene--duo .world-map,.scene--cinema .world-map,.scene--triptych .world-map,.scene--wide-film .world-map,.scene--portal .world-map,.scene:first-child .world-map,.scene--final .world-map{mask-image:linear-gradient(0deg,transparent 0 44%,#000 68%)}
+  .scene__insert{border-width:4px!important;box-shadow:0 0 0 4px rgba(20,31,28,.3),0 16px 38px rgba(8,16,14,.42)!important}.scene__insert:before{width:38px!important;height:10px!important}.scene__insert:after{width:48px!important;height:8px!important}
+  .page-turn i{width:110px;height:110px;margin:-55px}.page-turn span{top:calc(50% + 78px);font-size:7px}
+}

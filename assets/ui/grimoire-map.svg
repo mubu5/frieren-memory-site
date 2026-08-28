@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <pattern id="grain" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M0 16h48M0 32h48" stroke="#344b43" stroke-opacity=".07" stroke-width="1"/>
+      <circle cx="8" cy="9" r="1" fill="#8aaac5" fill-opacity=".22"/>
+      <circle cx="35" cy="39" r="1" fill="#9b8658" fill-opacity=".2"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#grain)"/>
+  <g fill="none" stroke="#54776f" stroke-width="2" opacity=".28">
+    <path d="M-80 760C180 610 230 820 490 650S850 380 1080 520s310 34 610-170" stroke-dasharray="5 13"/>
+    <path d="M40 820l170-210 90 110 185-285 145 190 135-140 215 255 170-225 200 210 165-280" opacity=".45"/>
+    <circle cx="1280" cy="245" r="138"/><circle cx="1280" cy="245" r="92" stroke-dasharray="4 10"/>
+    <path d="M1280 92v306M1127 245h306M1172 137l216 216M1388 137l-216 216" opacity=".6"/>
+    <path d="M1280 185l60 60-60 60-60-60z"/>
+  </g>
+  <g fill="#7399c7" opacity=".34">
+    <path d="M240 690c38-48 64-20 37 19-18 25-37 30-37 30s-14-25 0-49z"/>
+    <path d="M275 720c48-29 59 8 17 31-25 14-46 7-46 7s3-24 29-38z"/>
+    <path d="M1030 525c36-45 63-17 34 21-17 22-36 27-36 27s-12-24 2-48z"/>
+    <path d="M1060 554c45-27 57 9 16 30-23 12-42 5-42 5s2-22 26-35z"/>
+  </g>
+  <g fill="#8d3d48" opacity=".45"><circle cx="490" cy="650" r="5"/><circle cx="1080" cy="520" r="5"/><circle cx="1280" cy="245" r="5"/></g>
+  <g font-family="serif" fill="#4d6962" opacity=".35"><text x="115" y="580" font-size="20">王都</text><text x="945" y="470" font-size="20">北側諸国</text><text x="1310" y="430" font-size="18">AUREOLE</text></g>
+</svg>
