@@ -46,9 +46,12 @@ const go=(target)=>{
   if(locked||target===current||target<0||target>=scenes.length)return;
   locked=true;
   const old=scenes[current],next=scenes[target];
-  old.classList.add('is-leaving');next.classList.add('is-active');
+  const forward=target>current;
+  document.body.classList.add('is-turning');
+  old.classList.add('is-leaving',forward?'turn-out-left':'turn-out-right');
+  next.classList.add('is-active','is-entering',forward?'turn-in-right':'turn-in-left');
   playScene(next);pauseScene(old);current=target;updateUI();armAdvance();
-  setTimeout(()=>{old.classList.remove('is-active','is-leaving');locked=false},880);
+  setTimeout(()=>{old.classList.remove('is-active','is-leaving','turn-out-left','turn-out-right');next.classList.remove('is-entering','turn-in-right','turn-in-left');document.body.classList.remove('is-turning');locked=false},920);
 };
 const next=()=>{if(performance.now()>=stageReadyAt)go(current+1)},prev=()=>go(current-1);
 
@@ -98,7 +101,7 @@ if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion:re
   document.documentElement.addEventListener('mouseleave',()=>{cursor.classList.remove('visible');points.forEach(p=>p.el.style.opacity=0)});
   $$('a,button,input').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('active'));el.addEventListener('mouseleave',()=>cursor.classList.remove('active'))});
   const follow=()=>{
-    cx+=(tx-cx)*.3;cy+=(ty-cy)*.3;cursor.style.transform=`translate3d(${cx+18}px,${cy+18}px,0)`;
+    cx+=(tx-cx)*.42;cy+=(ty-cy)*.42;cursor.style.transform=`translate3d(${cx}px,${cy}px,0)`;
     let lead={x:cx,y:cy};points.forEach((p,i)=>{p.x+=(lead.x-p.x)*(.28-i*.018);p.y+=(lead.y-p.y)*(.28-i*.018);p.el.style.transform=`translate3d(${p.x}px,${p.y}px,0)`;p.el.style.opacity=started?String(.55-i*.065):0;lead=p});
     requestAnimationFrame(follow);
   };follow();

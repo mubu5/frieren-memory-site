@@ -210,3 +210,48 @@ body.is-loading .scene.is-active:after,body.is-loading .scene.is-active .scene__
   .scene--triptych .scene__insert--right{top:9vh;height:51vh}
   .scene--triptych .scene__copy{bottom:7.5vh}
 }
+
+/* V2 structural redesign: the whole screen is a living grimoire, not a gallery template. */
+.story{perspective:1400px;background:#101918}
+.story:before{content:"";position:absolute;z-index:20;inset:76px 24px 72px;pointer-events:none;border:1px solid rgba(183,163,106,.48);box-shadow:inset 0 0 0 5px rgba(10,22,20,.22),inset 0 0 60px rgba(7,14,13,.16);clip-path:polygon(0 16px,16px 16px,16px 0,calc(100% - 16px) 0,calc(100% - 16px) 16px,100% 16px,100% calc(100% - 16px),calc(100% - 16px) calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,16px calc(100% - 16px),0 calc(100% - 16px))}
+.story:after{content:"ᚠ  ·  旅の記憶  ·  ᛇ  ·  1000 YEARS  ·  ᚱ";position:absolute;z-index:21;left:50%;bottom:76px;transform:translateX(-50%);pointer-events:none;color:rgba(183,163,106,.56);font:7px "Space Mono";letter-spacing:.34em;white-space:nowrap}
+
+/* A visible page-turn transition between memories. */
+.scene.is-entering{z-index:4!important;transform-origin:center}.scene.is-leaving{z-index:5!important;opacity:1;transform-origin:center}
+.scene.turn-in-right{animation:grimoireInRight .9s cubic-bezier(.22,.74,.18,1) both!important}.scene.turn-in-left{animation:grimoireInLeft .9s cubic-bezier(.22,.74,.18,1) both!important}
+.scene.turn-out-left{animation:grimoireOutLeft .9s cubic-bezier(.55,.02,.3,1) both!important}.scene.turn-out-right{animation:grimoireOutRight .9s cubic-bezier(.55,.02,.3,1) both!important}
+@keyframes grimoireInRight{0%{opacity:.15;clip-path:inset(0 0 0 100%);transform:translateX(4%) rotateY(-4deg);filter:brightness(.6)}58%{opacity:1}100%{clip-path:inset(0);transform:none;filter:none}}
+@keyframes grimoireInLeft{0%{opacity:.15;clip-path:inset(0 100% 0 0);transform:translateX(-4%) rotateY(4deg);filter:brightness(.6)}58%{opacity:1}100%{clip-path:inset(0);transform:none;filter:none}}
+@keyframes grimoireOutLeft{0%{opacity:1;clip-path:inset(0);transform:none;filter:none}100%{opacity:.05;clip-path:inset(0 100% 0 0);transform:translateX(-3%) rotateY(3deg);filter:brightness(.55)}}
+@keyframes grimoireOutRight{0%{opacity:1;clip-path:inset(0);transform:none;filter:none}100%{opacity:.05;clip-path:inset(0 0 0 100%);transform:translateX(3%) rotateY(-3deg);filter:brightness(.55)}}
+body.is-turning .lore-ornament{opacity:.48;scale:1.14;transition:opacity .3s,scale .8s}
+
+/* Every memory type gets a different magical aperture. */
+.scene__insert{overflow:hidden!important}
+.scene__insert--portrait{border-radius:50% 50% 4px 4px/28% 28% 4px 4px!important;clip-path:polygon(50% 0,88% 12%,100% 34%,100% 100%,0 100%,0 34%,12% 12%)}
+.scene__insert--aged{border-radius:50%!important;outline-offset:4px!important}
+.scene__insert--grave{border-radius:48% 48% 5px 5px/32% 32% 5px 5px!important;clip-path:polygon(50% 0,88% 15%,100% 36%,100% 100%,0 100%,0 36%,12% 15%)}
+.scene--triptych .scene__media,.scene--triptych .scene__insert{clip-path:polygon(50% 0,100% 9%,100% 100%,0 100%,0 9%);border-radius:46% 46% 0 0/9% 9% 0 0}
+.scene__insert--ring{clip-path:polygon(0 0,92% 0,100% 18%,100% 100%,8% 100%,0 82%)}
+.scene__insert--chest{clip-path:polygon(10% 0,100% 0,100% 84%,90% 100%,0 100%,0 16%)}
+.scene__insert--statue{border-radius:50% 50% 3px 3px/24% 24% 3px 3px}
+.scene--letterbox .scene__media{clip-path:polygon(2% 0,98% 0,100% 4%,100% 96%,98% 100%,2% 100%,0 96%,0 4%)}
+.scene--cinema .scene__media{clip-path:polygon(0 7%,5% 0,95% 0,100% 7%,100% 93%,95% 100%,5% 100%,0 93%)}
+.scene--wide-film .scene__media{border-radius:50% 50% 3px 3px/7% 7% 3px 3px}
+
+/* The map and magic layer is now part of the composition, not a faint corner icon. */
+.lore-ornament{z-index:6;width:clamp(130px,17vw,260px);opacity:.32}.lore-ornament b{border-style:solid;border-color:rgba(143,201,223,.5)}.lore-ornament em{box-shadow:0 0 28px rgba(143,201,223,.45)}
+.lore-ornament span{height:2px;background:linear-gradient(90deg,currentColor 0 38%,transparent 38% 45%,currentColor 45% 62%,transparent 62%);opacity:.55}
+.scene--time-map .lore-ornament,.scene--mosaic .lore-ornament{left:3vw;right:auto;top:8vh}.scene--archive .lore-ornament{right:42vw;top:6vh}.scene--triptych .lore-ornament{left:43%;right:auto;top:6vh}
+
+/* Cursor center is exactly the operating point; no detached companion. */
+.magic-cursor{width:34px;height:34px;margin:-17px 0 0 -17px!important;transition:opacity .14s,scale .18s}.magic-cursor i{inset:0}.magic-cursor b{width:9px;height:9px;background:rgba(232,246,239,.9);border:0;box-shadow:0 0 0 4px rgba(143,201,223,.17),0 0 11px #8fc9df}.magic-cursor b:after{right:-7px;bottom:-7px}
+.cursor-trails i{opacity:.25!important}
+
+@media(max-width:700px){
+  .story:before{inset:68px 8px 66px;box-shadow:inset 0 0 0 3px rgba(10,22,20,.2)}.story:after{bottom:69px;font-size:5px;letter-spacing:.18em}
+  .scene.is-entering,.scene.is-leaving{animation-duration:.72s!important}
+  .lore-ornament{width:96px;opacity:.2}.scene--time-map .lore-ornament,.scene--mosaic .lore-ornament,.scene--archive .lore-ornament,.scene--triptych .lore-ornament{left:auto;right:12px;top:72px}
+  .scene--triptych .scene__media,.scene--triptych .scene__insert{clip-path:polygon(50% 0,100% 7%,100% 100%,0 100%,0 7%)}
+}
+@media(prefers-reduced-motion:reduce){.scene.is-entering,.scene.is-leaving{animation:none!important}.lore-ornament{transition:none!important}}
