@@ -84,6 +84,37 @@ body.is-loading .scene.is-active:after,body.is-loading .scene.is-active .scene__
   .scene__copy--final h2{font-size:8.3vw}.memory-form{margin-top:20px}
 }
 
+/* V4 reset: remove the game-UI language and rebuild around nature, paper, and quiet memory. */
+.story{background:#ddd5c2}.story:before,.story:after,.lore-ornament{display:none!important}
+.scene--split,.scene--time-map,.scene--archive,.scene--mosaic{background:#e7dfca url("assets/ui/elf-travel-paper-v1.png") center/cover no-repeat!important}
+.scene--letterbox,.scene--duo,.scene--cinema,.scene--triptych,.scene--wide-film,.scene--portal{background:#121b19 url("assets/ui/elf-travel-paper-v1.png") center/cover no-repeat!important;background-blend-mode:multiply!important}
+.world-map{inset:0;background:url("assets/ui/elf-travel-paper-v1.png") center/cover no-repeat!important;opacity:.34!important;mix-blend-mode:normal!important;filter:none!important;mask-image:linear-gradient(90deg,#000 0 34%,transparent 60%)!important}
+.scene--letterbox .world-map,.scene--duo .world-map,.scene--cinema .world-map,.scene--triptych .world-map,.scene--wide-film .world-map,.scene--portal .world-map{opacity:.13!important;filter:brightness(.42) saturate(.65)!important;mask-image:linear-gradient(90deg,transparent 0 44%,#000 74%)!important}
+.scene:first-child .world-map,.scene--final .world-map{display:none}
+
+/* Photographs and memories mounted with paper, shadow, and a small pressed-flower pin. */
+.scene__insert,.scene--triptych .scene__media,.scene--triptych .scene__insert{clip-path:none!important;border-radius:2px!important;border:10px solid #eee8d8!important;border-image:none!important;outline:1px solid rgba(71,79,65,.24)!important;outline-offset:0!important;box-shadow:0 18px 42px rgba(31,38,31,.24),0 2px 6px rgba(31,38,31,.18)!important}
+.scene__insert:before{content:""!important;left:50%!important;top:-16px!important;transform:translateX(-50%) rotate(-2deg)!important;width:56px!important;height:22px!important;background:rgba(202,195,169,.74)!important;clip-path:none!important;border:0!important;box-shadow:0 1px 2px rgba(40,45,37,.14)}
+.scene__insert:after{content:"✣"!important;left:auto!important;right:-7px!important;bottom:-8px!important;transform:none!important;width:23px!important;height:23px!important;display:grid;place-items:center;background:#819cc0!important;color:#eff3ec;font:12px serif;border-radius:50%!important;clip-path:none!important;box-shadow:0 3px 8px rgba(44,59,66,.25)}
+.scene--triptych .scene__media:before,.scene--triptych .scene__media:after{display:none!important}
+.scene--letterbox .scene__media,.scene--cinema .scene__media,.scene--wide-film .scene__media{clip-path:none!important;border:12px solid #eee8d8!important;outline:1px solid rgba(79,85,67,.25)!important;outline-offset:0!important;box-shadow:0 22px 54px rgba(0,0,0,.3)!important;border-radius:2px!important}
+.portal-window{border:10px solid #e8e0ca!important;outline:1px solid rgba(91,95,75,.34)!important;outline-offset:0!important;box-shadow:0 20px 50px rgba(0,0,0,.35)!important;border-radius:48% 48% 3px 3px/26% 26% 3px 3px!important}
+
+/* Page change: one clearly visible sheet of the same travel paper, no fake book spine or rune HUD. */
+.page-turn:before{background:#e8e0ca url("assets/ui/elf-travel-paper-v1.png") center/cover no-repeat!important;box-shadow:0 0 70px rgba(42,47,38,.36)!important}.page-turn i,.page-turn b{display:none!important}.page-turn span{top:50%!important;color:#55665f!important;font-family:"Noto Serif SC",serif!important;font-size:13px!important;letter-spacing:.28em!important}.page-turn.turn-forward:before{animation:paperPassForward .92s cubic-bezier(.74,0,.2,1) both!important}.page-turn.turn-back:before{animation:paperPassBack .92s cubic-bezier(.74,0,.2,1) both!important}.page-turn.turn-forward span,.page-turn.turn-back span{animation:paperCaption .92s ease both!important}
+@keyframes paperPassForward{0%{transform:translateX(102%)}43%,57%{transform:translateX(0)}100%{transform:translateX(-102%)}}
+@keyframes paperPassBack{0%{transform:translateX(-102%)}43%,57%{transform:translateX(0)}100%{transform:translateX(102%)}}
+@keyframes paperCaption{0%,32%,72%,100%{opacity:0}46%,58%{opacity:.72}}
+
+/* Pointer: a tiny blue flower at the exact native pointer coordinate, not a reticle. */
+.magic-cursor{width:16px!important;height:16px!important;margin:-8px 0 0 -8px!important;filter:drop-shadow(0 1px 3px rgba(47,73,93,.45))!important;transition:opacity .1s!important}.magic-cursor i{display:none!important}.magic-cursor b{left:50%!important;top:50%!important;width:6px!important;height:9px!important;background:#7898c2!important;border:0!important;border-radius:80% 10% 80% 10%!important;box-shadow:none!important;transform:translate(-50%,-50%) rotate(35deg)!important}.magic-cursor b:before,.magic-cursor b:after{content:""!important;position:absolute!important;inset:0!important;width:6px!important;height:9px!important;background:#8aa9cf!important;border-radius:80% 10% 80% 10%!important;box-shadow:none!important}.magic-cursor b:before{transform:rotate(90deg)!important}.magic-cursor b:after{transform:rotate(180deg)!important}.magic-cursor.active{scale:1!important;filter:drop-shadow(0 1px 4px rgba(47,73,93,.55)) brightness(1.08)!important}.cursor-trails i{width:3px!important;height:5px!important;background:#809fc7!important;border-radius:80% 10% 80% 10%!important;box-shadow:none!important;opacity:.18!important}
+
+@media(max-width:700px){
+  .world-map{mask-image:linear-gradient(0deg,#000 0 48%,transparent 72%)!important;opacity:.27!important}
+  .scene__insert,.scene--triptych .scene__media,.scene--triptych .scene__insert{border-width:6px!important;box-shadow:0 12px 28px rgba(26,35,29,.26)!important}.scene__insert:before{top:-10px!important;width:38px!important;height:15px!important}.scene__insert:after{right:-5px!important;bottom:-6px!important;width:17px!important;height:17px!important;font-size:9px!important}
+  .page-turn span{font-size:10px!important}
+}
+
 /* Frieren visual language: quiet journey, old spellbook, blue flowers, restrained magic. */
 :root{--frieren-night:#101a1b;--frieren-ink:#253833;--frieren-paper:#e7dfc9;--frieren-gold:#b7a36a;--frieren-magic:#8fc9df;--frieren-flower:#779bc9;--frieren-ruby:#873b45}
 .scene{transition:opacity .62s ease,visibility .62s;transform:none}.scene.is-active,.scene.is-leaving{transform:none}
