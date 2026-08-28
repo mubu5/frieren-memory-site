@@ -109,3 +109,43 @@ body.is-loading .scene.is-active:after,body.is-loading .scene.is-active .scene__
   .scene__copy--final{top:44%;bottom:auto}.scene__copy--final h2{font-size:7.3vw;color:#f3f0e4}
 }
 @keyframes mobileFrameIn{from{opacity:0}to{opacity:1}}
+
+/* Final cohesion pass: four thematic chapters, varied exhibit labels, and collision-free frames. */
+.scene--split,.scene--time-map,.scene--archive,.scene--mosaic{background-image:radial-gradient(circle at 16% 14%,rgba(126,111,78,.09),transparent 34%),repeating-linear-gradient(0deg,rgba(44,50,43,.018) 0 1px,transparent 1px 5px)}
+.scene--letterbox,.scene--duo,.scene--cinema,.scene--triptych,.scene--wide-film,.scene--portal{background-image:radial-gradient(circle at 72% 18%,rgba(141,172,149,.07),transparent 35%),repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 1px,transparent 1px 6px)}
+.scene--split .scene__copy h2,.scene--time-map .scene__copy h2,.scene--archive .scene__copy h2,.scene--mosaic .scene__copy h2{color:#33413b}
+.scene--split .scene__copy>p{background:transparent;border:1px solid #819287;border-left-width:4px;box-shadow:none}
+.scene--letterbox .scene__copy>p{border:0;border-top:1px solid #b8d2c3;background:rgba(7,16,22,.68);box-shadow:none}
+.scene--time-map .scene__copy>p{background:#eee7d6;box-shadow:8px 10px 0 rgba(92,102,92,.12);transform:rotate(-.35deg)}
+.scene--duo .scene__copy>p{background:rgba(7,14,22,.76);border-left:0;border-bottom:1px solid #9ab6c1;box-shadow:none}
+.scene--archive .scene__copy>p{background:#f0eadb;border:1px solid #bdb3a0;box-shadow:0 18px 40px rgba(70,61,48,.12)}
+.scene--cinema .scene__copy>p{background:transparent;border-left:0;padding-left:0;border-bottom:1px solid rgba(255,255,255,.38);box-shadow:none}
+.scene--triptych .scene__copy>p{background:rgba(6,15,12,.78);border-left:1px solid #b8d2c3;box-shadow:none}
+.scene--wide-film .scene__copy>p{background:rgba(22,16,14,.78);border-left-color:#b58c76;box-shadow:none}
+.scene--mosaic .scene__copy>p{background:#f2ebd9;border:1px solid #b7ad98;box-shadow:0 14px 34px rgba(63,55,42,.13)}
+.scene--portal .scene__copy>p{background:linear-gradient(100deg,rgba(9,27,31,.88),rgba(9,27,31,.46));border-left-color:#91b9b0}
+.scene--split .scene__copy>p:before{content:"时间札记"}.scene--letterbox .scene__copy>p:before{content:"十年"}.scene--time-map .scene__copy>p:before{content:"关于时间"}.scene--duo .scene__copy>p:before{content:"重逢"}.scene--archive .scene__copy>p:before{content:"迟到的问题"}.scene--cinema .scene__copy>p:before{content:"多年以后"}.scene--triptych .scene__copy>p:before{content:"当下"}.scene--wide-film .scene__copy>p:before{content:"同行"}.scene--mosaic .scene__copy>p:before{content:"被留下的小事"}.scene--portal .scene__copy>p:before{content:"目的地"}.scene__copy--hero>p:before{content:"序言"}
+
+/* Scene 10: reserve the left column for type and the right column for frames. */
+.scene--mosaic .scene__copy{z-index:5;left:4vw;bottom:12vh;width:34vw}.scene--mosaic .scene__copy>p{max-width:34vw}
+.scene--mosaic .scene__insert--ring{left:4vw;top:10vh;width:24vw;height:22vh}
+.scene--mosaic .scene__insert--chest{left:30vw;top:10vh;bottom:auto;width:11vw;height:15vh;border-width:5px}
+.scene--mosaic .scene__insert--statue{right:3vw;top:58vh;bottom:auto;width:17vw;height:20vh}
+
+/* Motion now follows meaning rather than repeating one spectacle. */
+.scene--archive.is-active:after{animation-duration:.55s;opacity:.3}.scene--archive.is-active .scene__media--still{animation:none}
+.scene--duo.is-active .scene__insert--aged{animation:timeDevelop 1.6s .45s ease-out both}
+.scene--mosaic.is-active .scene__insert{animation:photoDevelop 1.15s ease-out both}.scene--mosaic.is-active .scene__insert--chest{animation-delay:.22s}.scene--mosaic.is-active .scene__insert--statue{animation-delay:.4s}
+@keyframes timeDevelop{from{opacity:0;filter:grayscale(1) brightness(.55)}to{opacity:1;filter:none}}
+@keyframes photoDevelop{from{opacity:0;filter:sepia(1) contrast(.7)}to{opacity:1;filter:none}}
+
+.memory-form.is-sealed>div{opacity:.28;pointer-events:none}.memory-form.is-sealed [data-memory-result]{padding:16px 18px;border:1px solid rgba(242,235,215,.72);background:rgba(238,230,208,.9);color:#26322c;font-size:15px;box-shadow:0 12px 34px rgba(0,0,0,.2)}
+
+@media(max-width:700px){
+  .scene--split .scene__copy h2,.scene--time-map .scene__copy h2,.scene--archive .scene__copy h2,.scene--mosaic .scene__copy h2{color:rgba(240,236,221,.62)}
+  .scene--mosaic .scene__copy{left:22px;right:22px;bottom:12.8vh;width:auto}.scene--mosaic .scene__copy>p{max-width:none}
+  .scene--mosaic .scene__insert--ring{left:14px;top:86px;width:39vw;height:18vh}.scene--mosaic .scene__insert--chest{left:14px;top:26vh;width:39vw;height:17vh;border-width:4px}.scene--mosaic .scene__insert--statue{display:none}
+  .scene--split .scene__copy>p,.scene--letterbox .scene__copy>p,.scene--time-map .scene__copy>p,.scene--duo .scene__copy>p,.scene--archive .scene__copy>p,.scene--cinema .scene__copy>p,.scene--triptych .scene__copy>p,.scene--wide-film .scene__copy>p,.scene--mosaic .scene__copy>p,.scene--portal .scene__copy>p{background:linear-gradient(105deg,rgba(236,228,207,.97),rgba(222,213,191,.91));border:0;border-left:3px solid #809b89;color:#202923;transform:none;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+  .scene--cinema .scene__copy>p:before,.scene--triptych .scene__copy>p:before,.scene--wide-film .scene__copy>p:before,.scene--portal .scene__copy>p:before{color:#5c7668}
+  .memory-form.is-sealed [data-memory-result]{font-size:12px;padding:12px 14px}
+}

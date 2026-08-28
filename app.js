@@ -78,6 +78,7 @@ soundButton.addEventListener('click',()=>setSound(soundButton.getAttribute('aria
 $('.memory-form').addEventListener('submit',e=>{
   e.preventDefault();const input=$('#memory'),text=input.value.trim();
   if(!text){input.focus();return}
+  e.currentTarget.classList.add('is-sealed');
   $('[data-memory-result]').textContent=`“${text}” 已被留在这一刻。`;
 });
 
