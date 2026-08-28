@@ -83,3 +83,29 @@ body.is-loading .scene.is-active:after,body.is-loading .scene.is-active .scene__
   .scene--final .scene__media{object-position:58% center}.scene__copy--final{top:46%;bottom:auto;transform:translateY(-50%)}
   .scene__copy--final h2{font-size:8.3vw}.memory-form{margin-top:20px}
 }
+
+/* Memory exhibition: plot notes recede; the reflective line becomes the subject. */
+.scene__copy h2{font-size:clamp(28px,3.5vw,54px);font-weight:400;color:rgba(242,243,235,.72);letter-spacing:-.035em}
+.scene__copy>p{position:relative;max-width:680px;padding:17px 20px 18px;margin-top:20px;border-left:2px solid #b8d2c3;background:linear-gradient(100deg,rgba(9,18,17,.78),rgba(9,18,17,.3));font-size:clamp(17px,1.55vw,23px);line-height:1.72;color:#f4f0df;box-shadow:0 12px 36px rgba(0,0,0,.14)}
+.scene__copy>p:before{content:"MEMORY NOTE";display:block;margin-bottom:8px;font:7px "Space Mono";letter-spacing:.18em;color:#b8d2c3}
+.scene--split .scene__copy>p,.scene--time-map .scene__copy>p,.scene--archive .scene__copy>p,.scene--mosaic .scene__copy>p{background:linear-gradient(100deg,rgba(244,239,224,.92),rgba(244,239,224,.45));color:#26332f;border-color:#6e897c}
+.scene__media,.scene__insert{outline:1px solid rgba(239,229,204,.34);outline-offset:-1px}
+.scene__insert{box-shadow:0 24px 55px rgba(0,0,0,.26),0 0 0 7px rgba(226,218,197,.18)}
+
+@media(max-width:700px){
+  body,.scene,.scene--split,.scene--letterbox,.scene--time-map,.scene--duo,.scene--archive,.scene--cinema,.scene--triptych,.scene--wide-film,.scene--mosaic,.scene--portal{background-color:#141611;color:#f0ecdd}
+  .scene{background-image:radial-gradient(circle at 18% 16%,rgba(172,153,113,.09),transparent 34%),repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px)}
+  .topbar{background:linear-gradient(#141611f5,#141611c7 74%,transparent)}
+  .scene:after{display:none}.scene{transform:none;transition:opacity .55s ease,visibility .55s}.scene.is-active{transform:none}
+  .scene.is-active .scene__media--still{animation:none}.scene.is-active .scene__insert{animation:mobileFrameIn .55s ease-out both}
+  .scene__copy h2,.scene--split .scene__copy h2,.scene--letterbox .scene__copy h2,.scene--time-map .scene__copy h2,.scene--archive .scene__copy h2,.scene--triptych .scene__copy h2,.scene--mosaic .scene__copy h2{font-size:5.4vw;line-height:1.35;color:rgba(240,236,221,.62);letter-spacing:0}
+  .scene__copy>p,.scene--split .scene__copy>p,.scene--time-map .scene__copy>p,.scene--archive .scene__copy>p,.scene--mosaic .scene__copy>p{max-width:none;margin-top:11px;padding:12px 14px 13px;background:linear-gradient(105deg,rgba(236,228,207,.96),rgba(222,213,191,.88));border-left:3px solid #809b89;color:#202923;font-size:15px;line-height:1.62;text-shadow:none;box-shadow:0 10px 28px rgba(0,0,0,.24)}
+  .scene__copy>p:before{margin-bottom:6px;font-size:6px;color:#5c7668}
+  .scene__copy,.scene__copy--bottom,.scene__copy--right,.scene__copy--center,.scene--split .scene__copy,.scene--letterbox .scene__copy,.scene--cinema .scene__copy,.scene--wide-film .scene__copy,.scene--time-map .scene__copy,.scene--duo .scene__copy,.scene--archive .scene__copy,.scene--triptych .scene__copy,.scene--mosaic .scene__copy,.scene--portal .scene__copy{bottom:12.8vh}
+  .scene__eyebrow{color:#b7c9bb}.scene__number{position:absolute;right:0;bottom:100%;font-size:11vw;color:rgba(240,236,221,.2)}
+  .scene__media,.scene__insert,.portal-window{outline:1px solid rgba(239,229,204,.55);outline-offset:-1px}
+  .scene--split .scene__shade,.scene--letterbox .scene__shade,.scene--cinema .scene__shade,.scene--wide-film .scene__shade,.scene--time-map .scene__shade,.scene--duo .scene__shade,.scene--archive .scene__shade,.scene--triptych .scene__shade,.scene--mosaic .scene__shade,.scene--portal .scene__shade{background:linear-gradient(0deg,#141611 0 43%,#141611ec 50%,transparent 70%)}
+  .scene__copy--hero h2{font-size:17vw;color:#f3f0e4}.scene__copy--hero p{font-size:15px}
+  .scene__copy--final{top:44%;bottom:auto}.scene__copy--final h2{font-size:7.3vw;color:#f3f0e4}
+}
+@keyframes mobileFrameIn{from{opacity:0}to{opacity:1}}
