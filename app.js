@@ -17,6 +17,10 @@ scenes.forEach((scene,index)=>{
   const dot=document.createElement('button');
   dot.type='button';dot.setAttribute('aria-label',`前往第 ${index+1} 幕：${scene.dataset.label}`);
   dot.addEventListener('click',()=>go(index));dots.append(dot);
+  const ornament=document.createElement('div');
+  ornament.className='lore-ornament';ornament.setAttribute('aria-hidden','true');
+  ornament.innerHTML='<i></i><b></b><em></em><span></span>';
+  scene.append(ornament);
 });
 
 const playScene=scene=>{
